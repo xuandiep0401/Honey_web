@@ -47,3 +47,4 @@ To run management commands:
 ```bash
 docker-compose run web python manage.py <command>
 ```
+

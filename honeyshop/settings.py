@@ -95,6 +95,7 @@ WSGI_APPLICATION = "honeyshop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 if USE_POSTGRES:
     DATABASES = {
         'default': {

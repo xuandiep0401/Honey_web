@@ -1,0 +1,15 @@
+Django>=4.2,<5.0
+Pillow
+django-crispy-forms
+django-extensions
+stripe
+django-allauth
+django-tinymce
+django-redis
+channels
+pytest
+pytest-django
+django-environ
+
+psycopg2-binary
+gunicorn

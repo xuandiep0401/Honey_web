@@ -1,0 +1,6 @@
+<h1>Membership</h1>
+{% if membership %}
+<p>Level: {{ membership.level.name }}</p>
+{% else %}
+<p>You have no membership.</p>
+{% endif %}

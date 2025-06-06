@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: honeyshop
+      POSTGRES_USER: honeyuser
+      POSTGRES_PASSWORD: honeypass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: ["/app/entrypoint.sh"]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: 'False'
+      SECRET_KEY: 'replace-this-with-a-secure-secret'
+      ALLOWED_HOSTS: 'localhost,127.0.0.1'
+      USE_POSTGRES: 'True'
+      POSTGRES_DB: honeyshop
+      POSTGRES_USER: honeyuser
+      POSTGRES_PASSWORD: honeypass
+      DB_HOST: db
+      DB_PORT: 5432
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

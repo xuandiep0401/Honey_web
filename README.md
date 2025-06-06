@@ -27,3 +27,24 @@ Run tests with:
 ```bash
 pytest
 ```
+
+## Docker & Docker Compose
+
+1. Copy `.env.example` to `.env` and adjust variables as needed.
+   Ensure `USE_POSTGRES=True` so the project connects to PostgreSQL.
+2. Build and start the containers:
+
+```bash
+docker-compose up --build
+```
+
+The `web` service waits for PostgreSQL, runs migrations, collects static files and serves the site on port 8000.
+
+Visit <http://localhost:8000> to view the application. Stop the stack with `docker-compose down`.
+
+To run management commands:
+
+```bash
+docker-compose run web python manage.py <command>
+```
+

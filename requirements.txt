@@ -10,3 +10,6 @@ channels
 pytest
 pytest-django
 django-environ
+psycopg2-binary
+gunicorn
+

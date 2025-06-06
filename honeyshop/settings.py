@@ -24,6 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(BASE_DIR / '.env')
 
+USE_POSTGRES = env.bool('USE_POSTGRES', default=False)
+
 SECRET_KEY = env('SECRET_KEY', default='insecure')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -93,9 +95,22 @@ WSGI_APPLICATION = "honeyshop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': env.db(default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
-}
+
+if USE_POSTGRES:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('POSTGRES_DB', default='honeyshop'),
+            'USER': env('POSTGRES_USER', default='honeyuser'),
+            'PASSWORD': env('POSTGRES_PASSWORD', default='honeypass'),
+            'HOST': env('DB_HOST', default='db'),
+            'PORT': env('DB_PORT', default='5432'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': env.db(default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+    }
 
 
 # Password validation

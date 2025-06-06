@@ -14,6 +14,8 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+After creating a user, sign in at <http://localhost:8000/accounts/login/>.
+
 ## Apps
 
 - `landing` – homepage.
